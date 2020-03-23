@@ -1,6 +1,7 @@
 import 'package:alcool_gasolina_flutter/widgets/input.widget.dart';
 import 'package:alcool_gasolina_flutter/widgets/loading-button.widget.dart';
 import 'package:alcool_gasolina_flutter/widgets/logo.widget.dart';
+import 'package:alcool_gasolina_flutter/widgets/submit-form.dart';
 import 'package:alcool_gasolina_flutter/widgets/success.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
@@ -36,20 +37,11 @@ class HomePage extends StatelessWidget {
             reset: () {},
             result: "Compensa utilizar x",
           ),
-          Input(
-            label: "Gasolina",
-            ctrl: _gasolinaCtrl,
-          ),
-          Input(
-            label: "Álcool",
-            ctrl: _alcoolCtrl,
-          ),
-          LoadingButton(
-            busy: false,
-            func: () {},
-            text: 'CALCULAR',
-            invert: false,
-          ),
+          SubmitForm(
+              gasolinaCtrl: _gasolinaCtrl,
+              alcoolCtrl: _alcoolCtrl,
+              busy: false,
+              submitFunc: () {}),
         ],
       ),
     );
