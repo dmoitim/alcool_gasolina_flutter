@@ -1,4 +1,5 @@
 import 'package:alcool_gasolina_flutter/widgets/input.widget.dart';
+import 'package:alcool_gasolina_flutter/widgets/loading-button.widget.dart';
 import 'package:alcool_gasolina_flutter/widgets/logo.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
@@ -53,26 +54,11 @@ class HomePage extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                  margin: EdgeInsets.all(30),
-                  height: 60,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.8),
-                    borderRadius: BorderRadius.circular(
-                      60,
-                    ),
-                  ),
-                  child: FlatButton(
-                    child: Text(
-                      "CALCULAR NOVAMENTE",
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 25,
-                          fontFamily: "Big Shoulders Display"),
-                    ),
-                    onPressed: () {},
-                  ),
+                LoadingButton(
+                  busy: false,
+                  func: () {},
+                  text: 'CALCULAR NOVAMENTE',
+                  invert: true,
                 ),
               ],
             ),
@@ -85,25 +71,11 @@ class HomePage extends StatelessWidget {
             label: "Álcool",
             ctrl: _alcoolCtrl,
           ),
-          Container(
-            margin: EdgeInsets.all(30),
-            height: 60,
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.8),
-              borderRadius: BorderRadius.circular(
-                60,
-              ),
-            ),
-            child: FlatButton(
-              child: Text(
-                "CALCULAR",
-                style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 25,
-                    fontFamily: "Big Shoulders Display"),
-              ),
-              onPressed: () {},
-            ),
+          LoadingButton(
+            busy: false,
+            func: () {},
+            text: 'CALCULAR',
+            invert: false,
           ),
         ],
       ),
