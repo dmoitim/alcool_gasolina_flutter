@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Color _color = Colors.deepPurple;
   var _gasolinaCtrl = new MoneyMaskedTextController();
   var _alcoolCtrl = new MoneyMaskedTextController();
   var _busy = false;
@@ -21,28 +22,32 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: ListView(
-        children: <Widget>[
-          Logo(),
-          _completed
-              ? Success(
-                  reset: reset,
-                  result: _resultText,
-                )
-              : SubmitForm(
-                  gasolinaCtrl: _gasolinaCtrl,
-                  alcoolCtrl: _alcoolCtrl,
-                  busy: _busy,
-                  submitFunc: calculate,
-                ),
-        ],
+      body: AnimatedContainer(
+        duration: Duration(
+          milliseconds: 1200,
+        ),
+        color: _color,
+        child: ListView(
+          children: <Widget>[
+            Logo(),
+            _completed
+                ? Success(
+                    reset: reset,
+                    result: _resultText,
+                  )
+                : SubmitForm(
+                    gasolinaCtrl: _gasolinaCtrl,
+                    alcoolCtrl: _alcoolCtrl,
+                    busy: _busy,
+                    submitFunc: calculate,
+                  ),
+          ],
+        ),
       ),
     );
   }
 
   Future calculate() {
-    print('entrei aqui');
-
     double alcool =
         double.parse(_alcoolCtrl.text.replaceAll(new RegExp(r'[,.]'), '')) /
             100;
@@ -54,6 +59,7 @@ class _HomePageState extends State<HomePage> {
     double res = alcool / gasolina;
 
     setState(() {
+      _color = Colors.deepPurpleAccent;
       _completed = false;
       _busy = true;
     });
@@ -78,6 +84,7 @@ class _HomePageState extends State<HomePage> {
       _gasolinaCtrl = new MoneyMaskedTextController();
       _completed = false;
       _busy = false;
+      _color = Colors.deepPurple;
     });
   }
 }
